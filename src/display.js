@@ -52,10 +52,16 @@ async function toggleUnits(e) {
     units = (units === 'metric') ? 'imperial' : 'metric';
     const weather = await getWeather(current);
     render(weather);
+    toggleUnitDisplay();
     document.querySelector('#search').reset();
   } catch (error) {
     console.log(error);
   }
+}
+
+function toggleUnitDisplay() {
+  const unitDisplay = document.getElementById('units');
+  (units === 'imperial') ? unitDisplay.innerHTML = `F&#176;` : unitDisplay.innerHTML = `C&#176;`;
 }
 
 export { init, units };

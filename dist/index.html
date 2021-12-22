@@ -9,25 +9,42 @@
 <body>
   <h1>A Simple Weather App</h1>
   <button id="toggle">Units</button>
+  <div id="units">C&#176;</div>
   <form class="search" id="search">
     <input type="text" id="city" name="city" required>
     <button type="submit">Search</button>
   </form>
   <div class="weather-card">
     <div class="card-header">
-      <div class="city-name" id="cityName"></div>
+      <div class="city-name">Location: 
+        <div id="cityName"></div>
+        <div class="desc" id="desc"></div>
+      </div>
     </div>
     <div class="card-body">
-      <div class="temp" id="temp"></div>
-      <div class="feels" id="feels"></div>
-      <div class="desc" id="desc"></div>
+      <div class="temp">Temperature:
+        <div id="temp"></div>
+      </div>
+      <div class="feels">Feels like: 
+        <div id="feels"></div>
+      </div>
     </div>
     <div class="card-footer">
-      <div class="max" id="max"></div>
-      <div class="min" id="min"></div>
-      <div class="humidity" id="humidity"></div>
-      <div class="pressure" id="pressure"></div>
-      <div class="wind" id="wind"></div>
+      <div class="max">High: 
+        <div id="max"></div>
+      </div>
+      <div class="min">Low: 
+        <div id="min"></div>
+      </div>
+      <div class="humidity">Humidity: 
+        <div id="humidity"></div>
+      </div>
+      <div class="pressure">Pressure: 
+        <div id="pressure"></div>
+      </div>
+      <div class="wind">Wind speed: 
+        <div id="wind"></div>
+      </div>
     </div>
   </div>
 </body>
