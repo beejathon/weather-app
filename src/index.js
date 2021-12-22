@@ -1,15 +1,14 @@
-import { init, render } from './display.js';
+import { init, units} from './display.js';
 
 async function getWeather(city) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=6a3db4e49e01caf807c8002be68eae64`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&APPID=6a3db4e49e01caf807c8002be68eae64`;
   try {
     const response = await fetch(url, {mode: 'cors'});
     const rawData = await response.json();
     const data = extractData(rawData);
-    render(data);
+    return data;
   } catch (error) {
-    console.log(error)
-    alert('City not found');
+    console.log(error);
   }
 }
 
@@ -29,4 +28,4 @@ function extractData(data) {
 
 init();
 
-export default getWeather;
+export { getWeather };

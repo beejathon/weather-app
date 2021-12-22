@@ -1,8 +1,13 @@
-import getWeather from './index.js'
+import { getWeather } from './index.js'
+
+let current;
+let units = 'metric';
 
 function init() {
   const form = document.getElementById('search');
-  form.addEventListener('submit', searchCity );
+  form.addEventListener('submit', searchCity);
+  const toggle = document.getElementById('toggle');
+  toggle.addEventListener('click', toggleUnits)
 }
 
 function render(data) {
@@ -26,12 +31,31 @@ function render(data) {
   wind.textContent = data.windSpeed;
 }
 
-function searchCity(e) {
+async function searchCity(e) {
   e.preventDefault();
-  const data = new FormData(e.target);
-  const rawData = data.get('city');
-  const city = rawData.split(' ').join('+');
-  getWeather(city);
+  try {
+    const data = new FormData(e.target);
+    const rawData = data.get('city');
+    const city = rawData.split(' ').join('+');
+    const weather = await getWeather(city);
+    current = city;
+    render(weather);
+    document.querySelector('#search').reset();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export { init, render };
+async function toggleUnits(e) {
+  e.preventDefault();
+  try {
+    units = (units === 'metric') ? 'imperial' : 'metric';
+    const weather = await getWeather(current);
+    render(weather);
+    document.querySelector('#search').reset();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { init, units };
